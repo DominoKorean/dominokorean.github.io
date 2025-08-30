@@ -1,0 +1,26 @@
+[
+  {
+    "title": {
+      "en": "doc-blog",
+      "ko": "doc-blog"
+    },
+    "description": {
+      "en": "Documentation and Blog Platform for Minecraft (Korean)",
+      "ko": "마인크래프트 리소스팩 제작·개발 관련 문서/블로그"
+    },
+    "url": "https://dominokorean.github.io/doc-blog",
+    "repo": "https://github.com/DominoKorean/doc-blog"
+  },
+  {
+    "title": {
+      "en": "I-want-to-open-HTML",
+      "ko": "I-want-to-open-HTML"
+    },
+    "description": {
+      "en": "A very simple website to easily open and run HTML on my iPad.",
+      "ko": "아이패드에서 HTMl 열러고 만든 HTML 웹 뷰어"
+    },
+    "url": "https://dominokorean.github.io/I-want-to-open-HTML",
+    "repo": "https://github.com/DominoKorean/I-want-to-open-HTML"
+  }
+]

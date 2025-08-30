@@ -18,12 +18,10 @@
             align-items: center;
             min-height: 100vh;
         }
-
         .container {
             max-width: 800px;
             padding: 20px;
         }
-
         .page-item {
             background-color: #161b22;
             border-radius: 6px;
@@ -32,25 +30,21 @@
             display: flex;
             align-items: flex-start;
         }
-
         .github-icon {
             font-size: 24px;
             margin-right: 20px;
             color: #c9d1d9;
             text-decoration: none;
         }
-
         .content {
             flex-grow: 1;
         }
-
         .page-title {
             font-size: 24px;
             margin: 0 0 5px 0;
             color: #58a6ff;
             text-decoration: none;
         }
-
         .page-link {
             font-size: 14px;
             color: #8b949e;
@@ -58,30 +52,226 @@
             display: block;
             margin-bottom: 10px;
         }
-
         .page-description {
             margin: 0;
             color: #c9d1d9;
         }
-
         a:hover {
             text-decoration: underline;
         }
+        .lang-switcher {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1000;
+            color: #c9d1d9;
+            font-size: 14px;
+            user-select: none;
+        }
+        .lang-switcher select {
+            display: none; /* hide native select */
+            background: transparent;
+            color: #c9d1d9;
+            border: none;
+            outline: none;
+        }
+        .lang-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            color: #c9d1d9;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 6px 8px;
+            border-radius: 6px;
+        }
+        .lang-btn:hover,
+        .lang-btn:focus-visible { background-color: #161b22; }
+        .lang-icon { font-size: 20px; line-height: 1; }
+        .chevron { opacity: 0.85; }
+        .lang-menu {
+            position: absolute;
+            top: 40px;
+            left: 8px;
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 8px 12px;
+            min-width: 190px;
+            display: none;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .lang-menu.open { display: block; }
+        .lang-item {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: none;
+            color: #c9d1d9;
+            font-size: 16px;
+            padding: 10px 0;
+            cursor: pointer;
+        }
+        .lang-item:hover,
+        .lang-item:focus-visible { color: #ffffff; }
+        .lang-item.active {
+            border-bottom: 1px solid #c9d1d9;
+            margin-bottom: 6px;
+        }
     </style>
+    <script>
+        // Prevent FOUC of wrong language (sets lang attribute early)
+        (function() {
+            try {
+                var stored = localStorage.getItem('lang');
+                var browserIsKO = (navigator.language || '').toLowerCase().startsWith('ko');
+                var lang = stored || (browserIsKO ? 'ko' : 'en');
+                document.documentElement.setAttribute('lang', lang);
+            } catch (e) {}
+        })();
+    </script>
+    
 </head>
 <body>
-    <div class="container">
-        <div class="page-item">
-            <a href="https://github.com/DominoKorean/doc-blog" class="github-icon">
-                <i class="fab fa-github"></i>
-            </a>
-            <div class="content">
-                <a href="https://dominokorean.github.io/doc-blog" class="page-title">doc-blog</a>
-                <a href="https://dominokorean.github.io/doc-blog" class="page-link">https://dominokorean.github.io/doc-blog</a>
-                <p class="page-description">Documentation and Blog Platform for Minecraft ( Korean )
-                    <br> <b> 마인크래프트 리소스팩 제작및 개발 관련 문서 정리용 사이트</p>
-            </div>
+    <div class="lang-switcher" aria-label="Language selector">
+        <select id="langSelect" aria-label="Language">
+            <option value="en">English</option>
+            <option value="ko">한국어</option>
+        </select>
+        <button id="langBtn" class="lang-btn" aria-haspopup="true" aria-expanded="false" title="Change language">
+            <span class="lang-icon" aria-hidden="true">文A</span>
+            <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+        <div id="langMenu" class="lang-menu" role="menu" aria-labelledby="langBtn">
+            <button class="lang-item" data-lang="ko" role="menuitem">Korean / 한국어</button>
+            <button class="lang-item" data-lang="en" role="menuitem">English</button>
         </div>
     </div>
+    <div class="container">
+        <div id="pages"></div>
+    </div>
+    <script>
+        (function() {
+            const el = {
+                list: document.getElementById('pages'),
+                select: document.getElementById('langSelect'),
+                html: document.documentElement
+            };
+            const fallbackLang = 'en';
+            const stored = localStorage.getItem('lang');
+            const browserIsKO = (navigator.language || '').toLowerCase().startsWith('ko');
+            let lang = stored || (browserIsKO ? 'ko' : 'en');
+            function t(map) {
+                if (!map) return '';
+                return map[lang] || map[fallbackLang] || Object.values(map)[0] || '';
+            }
+            function setLang(newLang) {
+                lang = newLang;
+                try { localStorage.setItem('lang', lang); } catch (e) {}
+                el.select.value = lang;
+                el.html.setAttribute('lang', lang);
+                // Reflect selection in custom menu
+                var m = document.getElementById('langMenu');
+                if (m) {
+                    Array.prototype.forEach.call(m.querySelectorAll('.lang-item'), function(b){
+                        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+                    });
+                }
+                render();
+            }
+            async function fetchList() {
+                try {
+                    const res = await fetch('list.json', { cache: 'no-store' });
+                    if (!res.ok) throw new Error('Failed to load list.json');
+                    return await res.json();
+                } catch (e) {
+                    console.error(e);
+                    return [];
+                }
+            }
+            let cache = [];
+            function createItem(item) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'page-item';
+                const iconLink = document.createElement('a');
+                iconLink.className = 'github-icon';
+                iconLink.href = item.repo || item.url || '#';
+                iconLink.target = '_blank';
+                iconLink.rel = 'noopener noreferrer';
+                iconLink.innerHTML = '<i class="fab fa-github" aria-hidden="true"></i>';
+                const content = document.createElement('div');
+                content.className = 'content';
+                const titleA = document.createElement('a');
+                titleA.className = 'page-title';
+                titleA.href = item.url || '#';
+                titleA.target = '_blank';
+                titleA.rel = 'noopener noreferrer';
+                titleA.textContent = t(item.title) || (item.url || '');
+                const linkA = document.createElement('a');
+                linkA.className = 'page-link';
+                linkA.href = item.url || '#';
+                linkA.target = '_blank';
+                linkA.rel = 'noopener noreferrer';
+                linkA.textContent = item.url || '';
+                const descP = document.createElement('p');
+                descP.className = 'page-description';
+                descP.textContent = t(item.description);
+                content.appendChild(titleA);
+                content.appendChild(linkA);
+                content.appendChild(descP);
+                wrapper.appendChild(iconLink);
+                wrapper.appendChild(content);
+                return wrapper;
+            }
+            async function render() {
+                if (!cache.length) {
+                    cache = await fetchList();
+                }
+                el.list.innerHTML = '';
+                cache.forEach(item => {
+                    el.list.appendChild(createItem(item));
+                });
+            }
+            // Init
+            setLang(lang);
+            el.select.addEventListener('change', (e) => setLang(e.target.value));
+
+            // Custom dropdown interactions (icon + chevron)
+            const langBtn = document.getElementById('langBtn');
+            const langMenu = document.getElementById('langMenu');
+            function closeMenu() {
+                langMenu.classList.remove('open');
+                langBtn && langBtn.setAttribute('aria-expanded', 'false');
+            }
+            function openMenu() {
+                langMenu.classList.add('open');
+                langBtn && langBtn.setAttribute('aria-expanded', 'true');
+            }
+            if (langBtn && langMenu) {
+                langBtn.addEventListener('click', () => {
+                    const isOpen = langMenu.classList.contains('open');
+                    isOpen ? closeMenu() : openMenu();
+                });
+                langMenu.addEventListener('click', (e) => {
+                    const target = e.target.closest('.lang-item');
+                    if (!target) return;
+                    const newLang = target.getAttribute('data-lang');
+                    setLang(newLang);
+                    closeMenu();
+                });
+                document.addEventListener('click', (e) => {
+                    if (!langMenu.contains(e.target) && !langBtn.contains(e.target)) {
+                        closeMenu();
+                    }
+                });
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') closeMenu();
+                });
+            }
+        })();
+    </script>
 </body>
 </html>
