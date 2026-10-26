@@ -1,341 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DominoKorean's GitHub Pages</title>
-    <link rel="icon" type="image/x-icon" href="https://dominokorean.github.io/favicon.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <meta name="naver-site-verification" content="f9fb880cdd8164a0e7353e6d33d32a23bd97829c" />
-    <style>
-        body {
-            background-color: #0d1117;
-            color: #c9d1d9;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 800px;
-            padding: 20px;
-        }
-        .page-item {
-            background-color: #161b22;
-            border-radius: 6px;
-            padding: 20px;
-            margin: 20px 0;
-            display: flex;
-            align-items: flex-start;
-        }
-        .github-icon {
-            font-size: 24px;
-            margin-right: 20px;
-            color: #c9d1d9;
-            text-decoration: none;
-        }
-        .content {
-            flex-grow: 1;
-        }
-        .page-title {
-            font-size: 24px;
-            margin: 0 0 5px 0;
-            color: #58a6ff;
-            text-decoration: none;
-        }
-        .page-link {
-            font-size: 14px;
-            color: #8b949e;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-        }
-        .page-description {
-            margin: 0;
-            color: #c9d1d9;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .lang-switcher {
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            z-index: 1000;
-            color: #c9d1d9;
-            font-size: 14px;
-            user-select: none;
-        }
-        .lang-switcher select {
-            display: none; /* hide native select */
-            background: transparent;
-            color: #c9d1d9;
-            border: none;
-            outline: none;
-        }
-        .lang-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: transparent;
-            color: #c9d1d9;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 6px 8px;
-            border-radius: 6px;
-        }
-        .lang-btn:hover,
-        .lang-btn:focus-visible { background-color: #161b22; }
-        .lang-icon { font-size: 20px; line-height: 1; }
-        .chevron { opacity: 0.85; }
-        .lang-menu {
-            position: absolute;
-            top: 40px;
-            left: 8px;
-            padding: 8px;
-            min-width: 190px;
-            display: none;
-            border-radius: 14px;
-            background: transparent;
-        }
-        .lang-menu.open { display: flex; flex-direction: column; gap: 6px; }
-        .lang-highlight {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-radius: 12px;
-            background: rgba(148, 163, 184, 0.18);
-            box-shadow: 0 12px 32px rgba(2, 6, 23, 0.45);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            pointer-events: none;
-            opacity: 0;
-            transform: translate3d(0, 0, 0);
-            transition: transform 0.28s ease, width 0.28s ease, height 0.28s ease, opacity 0.28s ease;
-        }
-        .lang-highlight.visible { opacity: 1; }
-        .lang-item {
-            display: block;
-            width: 100%;
-            text-align: left;
-            background: transparent;
-            border: none;
-            color: #c9d1d9;
-            font-size: 16px;
-            padding: 10px 18px;
-            cursor: pointer;
-            border-radius: 12px;
-            position: relative;
-            z-index: 1;
-            transition: color 0.2s ease, transform 0.2s ease;
-        }
-        .lang-item:hover,
-        .lang-item:focus-visible { color: #ffffff; transform: translateY(-1px); }
-        .lang-item.active { color: #ffffff; font-weight: 600; }
-    </style>
-    <script>
-        // Prevent FOUC of wrong language (sets lang attribute early)
-        (function() {
-            try {
-                var stored = localStorage.getItem('lang');
-                var browserIsKO = (navigator.language || '').toLowerCase().startsWith('ko');
-                var lang = stored || (browserIsKO ? 'ko' : 'en');
-                document.documentElement.setAttribute('lang', lang);
-            } catch (e) {}
-        })();
-    </script>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="description" content="Explore DominoKorean's websites: a documentation blog, Pokémon Infinite Fusion viewer, and a simple HTML viewer.">
+  <meta name="naver-site-verification" content="f9fb880cdd8164a0e7353e6d33d32a23bd97829c">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DominoKorean · GitHub Pages">
+  <meta property="og:description" content="A small collection of websites by DominoKorean. Documentation, Pokémon, and useful little tools.">
+  <meta property="og:url" content="https://dominokorean.github.io/">
+  <title>DominoKorean · GitHub Pages</title>
+  <link rel="canonical" href="https://dominokorean.github.io/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="lang-switcher" aria-label="Language selector">
-        <select id="langSelect" aria-label="Language">
-            <option value="en">English</option>
-            <option value="ko">한국어</option>
-        </select>
-        <button id="langBtn" class="lang-btn" aria-haspopup="true" aria-expanded="false" title="Change language">
-            <span class="lang-icon" aria-hidden="true">文A</span>
-            <span class="chevron" aria-hidden="true">▾</span>
-        </button>
-        <div id="langMenu" class="lang-menu" role="menu" aria-labelledby="langBtn">
-            <div class="lang-highlight" aria-hidden="true"></div>
-            <button class="lang-item" data-lang="ko" role="menuitem">Korean / 한국어</button>
-            <button class="lang-item" data-lang="en" role="menuitem">English</button>
+  <a class="skip-link" href="#websites" data-ko="웹사이트 목록으로 건너뛰기">Skip to websites</a>
+  <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-github" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.65 7.65 0 0 1 8 3.86c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></symbol>
+    <symbol id="icon-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6.5h14M5 17.5h14"/></g></symbol>
+    <symbol id="icon-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4 10 14M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-repo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M5 4a2 2 0 0 1 2-2h12v17H7a2 2 0 0 0 0 4h12M5 4v17M19 19v4M9 6h6M9 10h6"/></g></symbol>
+    <symbol id="icon-book" viewBox="0 0 24 24"><path d="M12 5c-3-2-6-2-10-1v15c4-1 7-1 10 1 3-2 6-2 10-1V4c-4-1-7-1-10 1v15M5 8h3M5 12h3M16 8h3M16 12h3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-fusion" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M3 12h6m6 0h6"/></g></symbol>
+    <symbol id="icon-code" viewBox="0 0 24 24"><path d="m7 6-6 6 6 6m10-12 6 6-6 6M14 3l-4 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="DominoKorean home"><svg class="brand-icon" aria-hidden="true"><use href="#icon-github"/></svg><span>DominoKorean <span class="brand-divider">/</span> <strong>GitHub Pages</strong></span></a>
+      <div class="header-actions">
+        <div class="language-control" hidden>
+          <svg class="icon" aria-hidden="true"><use href="#icon-globe"/></svg>
+          <label class="sr-only" for="language" data-ko="표시 언어">Display language</label>
+          <select id="language"><option value="auto" data-ko="언어: 자동">Language: Auto</option><option value="ko">한국어</option><option value="en">English</option></select>
         </div>
+        <a class="profile-link" href="https://github.com/DominoKorean"><span>GitHub</span><svg class="icon" aria-hidden="true"><use href="#icon-external"/></svg></a>
+      </div>
     </div>
-    <div class="container">
-        <div id="pages"></div>
-    </div>
-    <script>
-        (function() {
-            const langBtn = document.getElementById('langBtn');
-            const langMenu = document.getElementById('langMenu');
-            const langHighlight = langMenu ? langMenu.querySelector('.lang-highlight') : null;
-            const langItems = langMenu ? Array.from(langMenu.querySelectorAll('.lang-item')) : [];
-            let highlightFrame = null;
-            const el = {
-                list: document.getElementById('pages'),
-                select: document.getElementById('langSelect'),
-                html: document.documentElement
-            };
-            const fallbackLang = 'en';
-            const stored = localStorage.getItem('lang');
-            const browserIsKO = (navigator.language || '').toLowerCase().startsWith('ko');
-            let lang = stored || (browserIsKO ? 'ko' : 'en');
-            function t(map) {
-                if (!map) return '';
-                return map[lang] || map[fallbackLang] || Object.values(map)[0] || '';
-            }
-            function setLang(newLang) {
-                lang = newLang;
-                try { localStorage.setItem('lang', lang); } catch (e) {}
-                el.select.value = lang;
-                el.html.setAttribute('lang', lang);
-                // Reflect selection in custom menu
-                var m = langMenu;
-                if (m) {
-                    Array.prototype.forEach.call(m.querySelectorAll('.lang-item'), function(b){
-                        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
-                    });
-                    if (m.classList.contains('open')) {
-                        syncHighlightToActive();
-                    }
-                }
-                render();
-            }
-            async function fetchList() {
-                try {
-                    const res = await fetch('list.json', { cache: 'no-store' });
-                    if (!res.ok) throw new Error('Failed to load list.json');
-                    return await res.json();
-                } catch (e) {
-                    console.error(e);
-                    return [];
-                }
-            }
-            let cache = [];
-            function createItem(item) {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'page-item';
-                const iconLink = document.createElement('a');
-                iconLink.className = 'github-icon';
-                iconLink.href = item.repo || item.url || '#';
-                iconLink.target = '_blank';
-                iconLink.rel = 'noopener noreferrer';
-                iconLink.innerHTML = '<i class="fab fa-github" aria-hidden="true"></i>';
-                const content = document.createElement('div');
-                content.className = 'content';
-                const titleA = document.createElement('a');
-                titleA.className = 'page-title';
-                titleA.href = item.url || '#';
-                titleA.target = '_blank';
-                titleA.rel = 'noopener noreferrer';
-                titleA.textContent = t(item.title) || (item.url || '');
-                const linkA = document.createElement('a');
-                linkA.className = 'page-link';
-                linkA.href = item.url || '#';
-                linkA.target = '_blank';
-                linkA.rel = 'noopener noreferrer';
-                linkA.textContent = item.url || '';
-                const descP = document.createElement('p');
-                descP.className = 'page-description';
-                descP.textContent = t(item.description);
-                content.appendChild(titleA);
-                content.appendChild(linkA);
-                content.appendChild(descP);
-                wrapper.appendChild(iconLink);
-                wrapper.appendChild(content);
-                return wrapper;
-            }
-            async function render() {
-                if (!cache.length) {
-                    cache = await fetchList();
-                }
-                el.list.innerHTML = '';
-                cache.forEach(item => {
-                    el.list.appendChild(createItem(item));
-                });
-            }
-            // Init
-            setLang(lang);
-            el.select.addEventListener('change', (e) => setLang(e.target.value));
-
-            // Custom dropdown interactions (icon + chevron)
-            function applyHighlight(target) {
-                if (!langHighlight || !target) return;
-                const { offsetLeft, offsetTop, offsetWidth, offsetHeight } = target;
-                langHighlight.style.width = offsetWidth + 'px';
-                langHighlight.style.height = offsetHeight + 'px';
-                langHighlight.style.transform = `translate3d(${offsetLeft}px, ${offsetTop}px, 0)`;
-            }
-            function showHighlight(target) {
-                if (!langHighlight || !langMenu || !langMenu.classList.contains('open') || !target) return;
-                if (highlightFrame) cancelAnimationFrame(highlightFrame);
-                highlightFrame = requestAnimationFrame(() => {
-                    langHighlight.classList.add('visible');
-                    applyHighlight(target);
-                    highlightFrame = null;
-                });
-            }
-            function syncHighlightToActive() {
-                if (!langMenu || !langHighlight || !langMenu.classList.contains('open')) return;
-                const active = langMenu.querySelector('.lang-item.active') || langItems[0];
-                if (active) {
-                    showHighlight(active);
-                }
-            }
-            function hideHighlight() {
-                if (!langHighlight) return;
-                if (highlightFrame) {
-                    cancelAnimationFrame(highlightFrame);
-                    highlightFrame = null;
-                }
-                langHighlight.classList.remove('visible');
-            }
-            function closeMenu() {
-                if (!langMenu) return;
-                langMenu.classList.remove('open');
-                langBtn && langBtn.setAttribute('aria-expanded', 'false');
-                hideHighlight();
-            }
-            function openMenu() {
-                if (!langMenu) return;
-                langMenu.classList.add('open');
-                langBtn && langBtn.setAttribute('aria-expanded', 'true');
-                syncHighlightToActive();
-            }
-            if (langBtn && langMenu) {
-                langBtn.addEventListener('click', () => {
-                    const isOpen = langMenu.classList.contains('open');
-                    isOpen ? closeMenu() : openMenu();
-                });
-                langItems.forEach((item) => {
-                    item.addEventListener('mouseenter', () => showHighlight(item));
-                    item.addEventListener('focus', () => showHighlight(item));
-                });
-                langMenu.addEventListener('click', (e) => {
-                    const target = e.target.closest('.lang-item');
-                    if (!target) return;
-                    const newLang = target.getAttribute('data-lang');
-                    setLang(newLang);
-                    closeMenu();
-                });
-                langMenu.addEventListener('mouseleave', () => syncHighlightToActive());
-                document.addEventListener('click', (e) => {
-                    if (!langMenu.contains(e.target) && !langBtn.contains(e.target)) {
-                        closeMenu();
-                    }
-                });
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') closeMenu();
-                });
-            }
-        })();
-    </script>
+    <nav class="tabs page-width" aria-label="Main navigation"><a class="tab" href="#websites" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#icon-globe"/></svg><span data-ko="웹사이트">Websites</span><span class="count">3</span></a></nav>
+  </header>
+  <main class="page-width" id="websites" tabindex="-1">
+    <section class="project-list" aria-labelledby="list-title">
+      <div class="list-header"><h1 id="list-title"><svg class="icon" aria-hidden="true"><use href="#icon-repo"/></svg><span data-ko="프로젝트">Projects</span><span class="count">3</span></h1><span class="list-note">GitHub Pages</span></div>
+      <ol class="projects">
+        <li><article class="project" aria-labelledby="doc-title">
+          <div class="project-icon project-icon-blue"><svg aria-hidden="true"><use href="#icon-book"/></svg></div>
+          <div class="project-content">
+            <div class="project-heading"><h3 id="doc-title"><a href="https://dominokorean.github.io/doc-blog/">doc-blog</a></h3><span class="badge">Public</span></div>
+            <p class="project-description" data-ko="기존 Tstory 블로그를 대체하기 위한 정보 문서 전용 블로그.">An information and documentation blog to replace my Tstory blog.</p>
+            <a class="site-url" href="https://dominokorean.github.io/doc-blog/">dominokorean.github.io/doc-blog/</a>
+            <div class="project-meta"><span class="category-dot blue" aria-hidden="true"></span><span data-ko="문서 · 블로그">Docs · Blog</span></div>
+          </div>
+        </article></li>
+        <li><article class="project" aria-labelledby="fusion-title">
+          <div class="project-icon project-icon-purple"><svg aria-hidden="true"><use href="#icon-fusion"/></svg></div>
+          <div class="project-content">
+            <div class="project-heading"><h3 id="fusion-title"><a href="https://dominokorean.github.io/Pokemon-Fusion-Viewer">Pokemon-Fusion-Viewer</a></h3><span class="badge">Public</span></div>
+            <p class="project-description" data-ko="포켓몬 인피니트 퓨전을 위한 뷰어 웹사이트.">A viewer website for Pokémon Infinite Fusion.</p>
+            <a class="site-url" href="https://dominokorean.github.io/Pokemon-Fusion-Viewer">dominokorean.github.io/Pokemon-Fusion-Viewer</a>
+            <div class="project-meta"><span class="category-dot purple" aria-hidden="true"></span><span data-ko="포켓몬 · 뷰어">Pokémon · Viewer</span></div>
+          </div>
+        </article></li>
+        <li><article class="project" aria-labelledby="html-title">
+          <div class="project-icon project-icon-green"><svg aria-hidden="true"><use href="#icon-code"/></svg></div>
+          <div class="project-content">
+            <div class="project-heading"><h3 id="html-title"><a href="https://dominokorean.github.io/I-want-to-open-HTML">I-want-to-open-HTML</a></h3><span class="badge">Public</span></div>
+            <p class="project-description" data-ko="아이패드에서 HTML을 간편하게 열고 실행하는 아주 단순한 웹사이트.">A very simple website to easily open and run HTML on my iPad.</p>
+            <a class="site-url" href="https://dominokorean.github.io/I-want-to-open-HTML">dominokorean.github.io/I-want-to-open-HTML</a>
+            <div class="project-meta"><span class="category-dot green" aria-hidden="true"></span><span data-ko="도구 · HTML">Tools · HTML</span></div>
+          </div>
+        </article></li>
+      </ol>
+    </section>
+  </main>
+  <footer class="site-footer page-width">
+    <a class="footer-owner" href="https://github.com/DominoKorean"><svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>DominoKorean</a>
+    <a class="footer-source" href="https://github.com/DominoKorean/dominokorean.github.io"><span data-ko="이 페이지의 소스">View page source</span><svg class="icon" aria-hidden="true"><use href="#icon-external"/></svg></a>
+  </footer>
 </body>
 </html>
