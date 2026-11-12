@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
 Sitemap: https://dominokorean.github.io/sitemap.xml
+Sitemap: https://dominokorean.github.io/Pokemon-Fusion-Viewer/sitemap.xml
+Sitemap: https://dominokorean.github.io/doc-blog/sitemap.xml
