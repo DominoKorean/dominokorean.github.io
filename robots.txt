@@ -3,3 +3,6 @@ Allow: /
 Sitemap: https://dominokorean.github.io/sitemap.xml
 Sitemap: https://dominokorean.github.io/Pokemon-Fusion-Viewer/sitemap.xml
 Sitemap: https://dominokorean.github.io/doc-blog/sitemap.xml
+Sitemap: https://dominokorean-sitemaps.pages.dev/root.xml
+Sitemap: https://dominokorean-sitemaps.pages.dev/sitemap.xml
+Sitemap: https://dominokorean-sitemaps.pages.dev/pokemon/sitemap.xml
